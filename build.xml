@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="distribution" default="distribution" basedir=".">
+	<property name="cms.version">7.8.0</property>
+	<property name="condation.version">2025.8</property>
+	
+	<target name="copy-server" description="--> copy server">
+		<unzip src="../cms-server/cms-server/target/cms-server-${cms.version}.zip" dest="temp/" />
+		<copy todir="build/themes/demo">
+			<fileset dir="../cms-server/test-server/themes/demo"/>
+		</copy>
+		<copy todir="build/lib">
+			<fileset dir="temp/cms-server-${cms.version}/lib"/>
+		</copy>
+		<copy todir="build/hosts/demo">
+			<fileset dir="../cms-server/test-server/hosts/demo"/>
+		</copy>
+		<copy todir="build/">
+			<resources>
+				<file file="temp/cms-server-${cms.version}/cms-server-${cms.version}.jar"/>
+				<file file="../cms-server/test-server/server.toml"/>
+				<file file="../cms-server/test-server/log4j2.xml"/>
+				<file file="../cms-server/LICENSE"/>
+			</resources>
+		</copy>
+		<copy todir="dist/">
+			<fileset dir="scripts/">
+				<include name="server.sh"/>
+				<include name="server.bat"/>
+			</fileset>
+			<filterchain>
+				<replacetokens>
+					<token key="CMS_VERSION" value="${cms.version}"/>
+				</replacetokens>
+			</filterchain>
+		</copy>
+		<fixcrlf srcdir="dist" includes="server.sh" eol="unix"/>
+	</target>
+	
+	<target name="download-jre" description="--> download jres">
+		<get skipexisting="true" src="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%2B9/OpenJDK21U-jre_aarch64_mac_hotspot_21.0.8_9.tar.gz" dest="temp/OpenJDK21U-jre_aarch64_mac_hotspot_21.0.8_9.tar.gz"></get>
+		<get skipexisting="true" src="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%2B9/OpenJDK21U-jre_x64_windows_hotspot_21.0.8_9.zip" dest="temp/OpenJDK21U-jre_x64_windows_hotspot_21.0.8_9.zip"></get>
+		<get skipexisting="true" src="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%2B9/OpenJDK21U-jre_x64_linux_hotspot_21.0.8_9.tar.gz" dest="temp/OpenJDK21U-jre_x64_linux_hotspot_21.0.8_9.tar.gz"></get>
+		<get skipexisting="true" src="https://github.com/adoptium/temurin21-binaries/releases/download/jdk-21.0.8%2B9/OpenJDK21U-jre_aarch64_linux_hotspot_21.0.8_9.tar.gz" dest="temp/OpenJDK21U-jre_aarch64_linux_hotspot_21.0.8_9.tar.gz"></get>
+	</target>
+
+	<target name="clean">
+		<delete dir="build" />
+		<delete dir="temp" />
+		<delete dir="dist" />
+		
+		<mkdir  dir="dist/"  />
+		<mkdir  dir="temp/"  />
+		<mkdir  dir="build/modules/" />
+	</target>
+	
+	<target name="dist" description="--> build distribution">
+		<echo>build ${system.name} ${system.arch} distribution </echo>
+
+		<property name="dist.path">dist/${system.name}_${system.arch}</property>
+		<property name="dist.java.path">dist/java/${system.name}_${system.arch}</property>
+		<property name="dist.name">condation-server-${system.name}-${system.arch}-${condation.version}</property>
+		
+		<property name="java.filename">OpenJDK21U-jre_${system.arch}_${system.name}_hotspot_21.0.8_9</property>
+		
+		
+		<condition property="is.windows">
+			<equals arg1="${system.name}" arg2="windows"/>
+		</condition>
+
+		<mkdir dir="${dist.path}"/>
+
+		<!-- Kopiere Build-Inhalt -->
+		<copy todir="${dist.path}">
+			<fileset dir="build"/>
+		</copy>
+
+		<!-- Entpacke JRE temporär -->
+		<antcall target="unpack-java-tgz" />
+		<antcall target="unpack-java-zip" />
+		
+		
+		<antcall target="package-zip"/>
+		<antcall target="package-tar"/>
+	</target>
+	
+	<target name="unpack-java-tgz" unless="is.windows">
+		<untar src="temp/${java.filename}.tar.gz"
+			   dest="${dist.java.path}"
+			   compression="gzip"/>
+	</target>
+	
+	<target name="unpack-java-zip" if="is.windows">
+		<unzip src="temp/${java.filename}.zip"
+			   dest="${dist.java.path}"/>
+	</target>
+	
+	<target name="package-tar" unless="is.windows">
+		<tar destfile="dist/${dist.name}.tar.gz" compression="gzip">
+			<tarfileset dir="${dist.path}" prefix="condation-server"/>
+			<tarfileset file="dist/server.sh" mode="755" fullpath="condation-server/server.sh"/>
+			<tarfileset dir="dist/java/${system.name}_${system.arch}/${java.path}/" prefix="condation-server/java">
+				<exclude name="bin/java"/>
+			</tarfileset>
+			<tarfileset file="dist/java/${system.name}_${system.arch}/${java.path}/bin/java" mode="755" fullpath="condation-server/java/bin/java"/>
+			<tarfileset dir="../cms-server" includes="README.md" prefix="condation-server"/>
+			<tarfileset dir="../cms-server" includes="CHANGELOG.md" prefix="condation-server"/>
+		</tar>
+	</target>
+
+	<target name="package-zip" if="is.windows">
+		<zip destfile="dist/${dist.name}.zip">
+			<zipfileset dir="${dist.path}" prefix="condation-server"/>
+			<zipfileset file="dist/server.bat" fullpath="condation-server/server.bat"/>
+			<zipfileset dir="dist/java/${system.name}_${system.arch}/${java.path}/" prefix="condation-server/java">
+				<exclude name="bin/java"/>
+			</zipfileset>
+			<zipfileset file="dist/java/${system.name}_${system.arch}/${java.path}/bin/java" fullpath="condation-server/java/bin/java"/>
+			<zipfileset dir="../cms-server" includes="README.md" prefix="condation-server"/>
+			<zipfileset dir="../cms-server" includes="CHANGELOG.md" prefix="condation-server"/>
+		</zip>
+	</target>
+	
+	<target name="distribution" depends="clean,download-jre,copy-server">
+		
+		<echo>create binary distributions</echo>
+		
+		<antcall target="dist">
+			<param name="system.name" value="linux" />
+			<param name="system.arch" value="x64" />
+			<param name="java.path" value="jdk-21.0.8+9-jre" />
+		</antcall>
+		
+		<antcall target="dist">
+			<param name="system.name" value="linux" />
+			<param name="system.arch" value="aarch64" />
+			<param name="java.path" value="jdk-21.0.8+9-jre" />
+		</antcall>
+		
+		<antcall target="dist">
+			<param name="system.name" value="windows" />
+			<param name="system.arch" value="x64" />
+			<param name="java.path" value="jdk-21.0.8+9-jre" />
+		</antcall>
+		
+		<antcall target="dist">
+			<param name="system.name" value="mac" />
+			<param name="system.arch" value="aarch64" />
+			<param name="java.path" value="jdk-21.0.8+9-jre/Contents/Home" />
+		</antcall>
+	</target>
+</project>
