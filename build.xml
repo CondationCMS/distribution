@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="distribution" default="distribution" basedir=".">
-	<property name="cms.version">7.8.0</property>
-	<property name="condation.version">2025.8</property>
+	<property name="cms.version">8.0.0</property>
+	<property name="condation.version">2025.9</property>
 	
 	<target name="copy-server" description="--> copy server">
 		<unzip src="../cms-server/cms-server/target/cms-server-${cms.version}.zip" dest="temp/" />
@@ -19,7 +19,6 @@
 				<file file="temp/cms-server-${cms.version}/cms-server-${cms.version}.jar"/>
 				<file file="../cms-server/test-server/server.toml"/>
 				<file file="../cms-server/test-server/log4j2.xml"/>
-				<file file="../cms-server/LICENSE"/>
 			</resources>
 		</copy>
 		<copy todir="dist/">
@@ -102,8 +101,9 @@
 				<exclude name="bin/java"/>
 			</tarfileset>
 			<tarfileset file="dist/java/${system.name}_${system.arch}/${java.path}/bin/java" mode="755" fullpath="condation-server/java/bin/java"/>
-			<tarfileset dir="../cms-server" includes="README.md" prefix="condation-server"/>
-			<tarfileset dir="../cms-server" includes="CHANGELOG.md" prefix="condation-server"/>
+			<tarfileset file="README.md" prefix="condation-server"/>
+			<tarfileset file="CHANGELOG.md" prefix="condation-server"/>
+			<tarfileset file="LICENSE" prefix="condation-server"/>
 		</tar>
 	</target>
 
@@ -115,8 +115,9 @@
 				<exclude name="bin/java"/>
 			</zipfileset>
 			<zipfileset file="dist/java/${system.name}_${system.arch}/${java.path}/bin/java" fullpath="condation-server/java/bin/java"/>
-			<zipfileset dir="../cms-server" includes="README.md" prefix="condation-server"/>
-			<zipfileset dir="../cms-server" includes="CHANGELOG.md" prefix="condation-server"/>
+			<zipfileset file="README.md" prefix="condation-server"/>
+			<zipfileset file="CHANGELOG.md" prefix="condation-server"/>
+			<zipfileset file="LICENSE" prefix="condation-server"/>
 		</zip>
 	</target>
 	
