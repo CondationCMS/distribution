@@ -672,3 +672,25 @@ may consider it more useful to permit linking proprietary applications with
 the library.  If this is what you want to do, use the GNU Lesser General
 Public License instead of this License.  But first, please read
 <https://www.gnu.org/licenses/why-not-lgpl.html>.
+
+
+
+Exception for Modules and Extensions
+
+As a special exception to the terms of the GNU General Public License v3
+applied to CondationCMS, you may develop, distribute and sell modules and
+extensions for CondationCMS under any license of your choice, including 
+proprietary licenses, provided that all of the following conditions are met:
+
+1. The module or extension interacts with CondationCMS solely through the
+   official Module/Extension API, as documented by the CondationCMS project.
+2. The module or extension does not include, copy, or modify source code of 
+   CondationCMS core components.
+3. The module or extension can be installed and removed without altering 
+   CondationCMS core files.
+4. Any modifications to the CondationCMS core itself remain subject to the 
+   GNU General Public License v3.
+
+This exception ensures that the CondationCMS core remains free software under 
+the GPL, while allowing developers to create and license independent modules 
+and extensions under terms of their choosing.
