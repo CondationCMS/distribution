@@ -5,14 +5,14 @@
 	
 	<target name="copy-server" description="--> copy server">
 		<unzip src="../cms-server/cms-server/target/cms-server-${cms.version}.zip" dest="temp/" />
-		<copy todir="build/themes/demo">
-			<fileset dir="../cms-server/test-server/themes/demo"/>
-		</copy>
 		<copy todir="build/lib">
 			<fileset dir="temp/cms-server-${cms.version}/lib"/>
 		</copy>
+		<copy todir="build/themes/demo">
+			<fileset dir="../demo-project/themes/demo"/>
+		</copy>
 		<copy todir="build/hosts/demo">
-			<fileset dir="../cms-server/test-server/hosts/demo"/>
+			<fileset dir="../demo-project/hosts/demo"/>
 		</copy>
 		<copy todir="build/">
 			<resources>
