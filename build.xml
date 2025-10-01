@@ -25,6 +25,8 @@
 			<fileset dir="scripts/">
 				<include name="server.sh"/>
 				<include name="server.bat"/>
+				<include name="debug.sh"/>
+				<include name="debug.bat"/>
 			</fileset>
 			<filterchain>
 				<replacetokens>
@@ -33,6 +35,7 @@
 			</filterchain>
 		</copy>
 		<fixcrlf srcdir="dist" includes="server.sh" eol="unix"/>
+		<fixcrlf srcdir="dist" includes="debug.sh" eol="unix"/>
 	</target>
 	
 	<target name="download-jre" description="--> download jres">
@@ -97,6 +100,7 @@
 		<tar destfile="dist/${dist.name}.tar.gz" compression="gzip">
 			<tarfileset dir="${dist.path}" prefix="condation-server"/>
 			<tarfileset file="dist/server.sh" mode="755" fullpath="condation-server/server.sh"/>
+			<tarfileset file="dist/debug.sh" mode="755" fullpath="condation-server/debug.sh"/>
 			<tarfileset dir="dist/java/${system.name}_${system.arch}/${java.path}/" prefix="condation-server/java">
 				<exclude name="bin/java"/>
 			</tarfileset>
@@ -111,6 +115,7 @@
 		<zip destfile="dist/${dist.name}.zip">
 			<zipfileset dir="${dist.path}" prefix="condation-server"/>
 			<zipfileset file="dist/server.bat" fullpath="condation-server/server.bat"/>
+			<zipfileset file="dist/debug.bat" fullpath="condation-server/bug.bat"/>
 			<zipfileset dir="dist/java/${system.name}_${system.arch}/${java.path}/" prefix="condation-server/java">
 				<exclude name="bin/java"/>
 			</zipfileset>
