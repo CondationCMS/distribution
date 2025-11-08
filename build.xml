@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="distribution" default="distribution" basedir=".">
 	<property name="cms.version">8.0.0</property>
-	<property name="condation.version">2026.01-S3</property>
+	<property name="condation.version">2026.01-S5</property>
 	
 	<target name="copy-server" description="--> copy server">
 		<unzip src="../cms-server/cms-server/target/cms-server-${cms.version}.zip" dest="temp/" />
@@ -27,6 +27,7 @@
 				<include name="server.bat"/>
 				<include name="debug.sh"/>
 				<include name="debug.bat"/>
+				<include name="server.toml" />
 			</fileset>
 			<filterchain>
 				<replacetokens>
@@ -34,15 +35,22 @@
 				</replacetokens>
 			</filterchain>
 		</copy>
+		<copy todir="dist/config">
+			<fileset dir="scripts/config">
+				<include name="backup.yaml"/>
+			</fileset>
+		</copy>
 		<fixcrlf srcdir="dist" includes="server.sh" eol="unix"/>
 		<fixcrlf srcdir="dist" includes="debug.sh" eol="unix"/>
 	</target>
 	
 	<target name="download-jre" description="--> download jres">
-		<get skipexisting="true" src="https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_macos-aarch64_bin.tar.gz" dest="temp/jdk_aarch64_mac.tar.gz"></get>
 		<get skipexisting="true" src="https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_windows-x64_bin.zip" dest="temp/jdk_x64_windows.zip"></get>
+		<!--
+		<get skipexisting="true" src="https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_macos-aarch64_bin.tar.gz" dest="temp/jdk_aarch64_mac.tar.gz"></get>
 		<get skipexisting="true" src="https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_linux-x64_bin.tar.gz" dest="temp/jdk_x64_linux.tar.gz"></get>
 		<get skipexisting="true" src="https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_linux-aarch64_bin.tar.gz" dest="temp/jdk_aarch64_linux.tar.gz"></get>
+		-->
 	</target>
 
 	<target name="clean">
@@ -98,7 +106,9 @@
 	
 	<target name="package-tar" unless="is.windows">
 		<tar destfile="dist/${dist.name}.tar.gz" compression="gzip">
-			<tarfileset dir="${dist.path}" prefix="condation-server"/>
+			<tarfileset dir="${dist.path}" prefix="condation-server">
+				<exclude name="server.toml"/>
+			</tarfileset>
 			<tarfileset file="dist/server.sh" mode="755" fullpath="condation-server/server.sh"/>
 			<tarfileset file="dist/debug.sh" mode="755" fullpath="condation-server/debug.sh"/>
 			<tarfileset dir="dist/java/${system.name}_${system.arch}/${java.path}/" prefix="condation-server/java">
@@ -108,14 +118,18 @@
 			<tarfileset file="README.md" prefix="condation-server"/>
 			<tarfileset file="CHANGELOG.md" prefix="condation-server"/>
 			<tarfileset file="LICENSE" prefix="condation-server"/>
+			<tarfileset file="dist/server.toml" prefix="condation-server"/>
+			<tarfileset dir="dist/config" prefix="condation-server/config"/>
 		</tar>
 	</target>
 
 	<target name="package-zip" if="is.windows">
 		<zip destfile="dist/${dist.name}.zip">
-			<zipfileset dir="${dist.path}" prefix="condation-server"/>
+			<zipfileset dir="${dist.path}" prefix="condation-server">
+				<exclude name="server.toml"/>
+			</zipfileset>
 			<zipfileset file="dist/server.bat" fullpath="condation-server/server.bat"/>
-			<zipfileset file="dist/debug.bat" fullpath="condation-server/bug.bat"/>
+			<zipfileset file="dist/debug.bat" fullpath="condation-server/debug.bat"/>
 			<zipfileset dir="dist/java/${system.name}_${system.arch}/${java.path}/" prefix="condation-server/java">
 				<exclude name="bin/java"/>
 			</zipfileset>
@@ -123,6 +137,8 @@
 			<zipfileset file="README.md" prefix="condation-server"/>
 			<zipfileset file="CHANGELOG.md" prefix="condation-server"/>
 			<zipfileset file="LICENSE" prefix="condation-server"/>
+			<zipfileset file="dist/server.toml" prefix="condation-server"/>
+			<zipfileset dir="dist/config" prefix="condation-server/config"/>
 		</zip>
 	</target>
 	
@@ -131,6 +147,13 @@
 		<echo>create binary distributions</echo>
 		
 		<antcall target="dist">
+			<param name="system.name" value="windows" />
+			<param name="system.arch" value="x64" />
+			<param name="java.path" value="jdk-25.0.1" />
+		</antcall>
+
+<!--
+		<antcall target="dist">
 			<param name="system.name" value="linux" />
 			<param name="system.arch" value="x64" />
 			<param name="java.path" value="jdk-25.0.1" />
@@ -139,12 +162,6 @@
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
 			<param name="system.arch" value="aarch64" />
-			<param name="java.path" value="jdk-25.0.1" />
-		</antcall>
-		
-		<antcall target="dist">
-			<param name="system.name" value="windows" />
-			<param name="system.arch" value="x64" />
 			<param name="java.path" value="jdk-25.0.1" />
 		</antcall>
 		
@@ -153,5 +170,6 @@
 			<param name="system.arch" value="aarch64" />
 			<param name="java.path" value="./jdk-25.0.1.jdk/Contents/Home" />
 		</antcall>
+-->
 	</target>
 </project>
