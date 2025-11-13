@@ -46,11 +46,9 @@
 	
 	<target name="download-jre" description="--> download jres">
 		<get skipexisting="true" src="https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_windows-x64_bin.zip" dest="temp/jdk_x64_windows.zip"></get>
-		<!--
 		<get skipexisting="true" src="https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_macos-aarch64_bin.tar.gz" dest="temp/jdk_aarch64_mac.tar.gz"></get>
 		<get skipexisting="true" src="https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_linux-x64_bin.tar.gz" dest="temp/jdk_x64_linux.tar.gz"></get>
 		<get skipexisting="true" src="https://download.java.net/java/GA/jdk25.0.1/2fbf10d8c78e40bd87641c434705079d/8/GPL/openjdk-25.0.1_linux-aarch64_bin.tar.gz" dest="temp/jdk_aarch64_linux.tar.gz"></get>
-		-->
 	</target>
 
 	<target name="clean">
@@ -152,7 +150,6 @@
 			<param name="java.path" value="jdk-25.0.1" />
 		</antcall>
 
-<!--
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
 			<param name="system.arch" value="x64" />
@@ -170,6 +167,5 @@
 			<param name="system.arch" value="aarch64" />
 			<param name="java.path" value="./jdk-25.0.1.jdk/Contents/Home" />
 		</antcall>
--->
 	</target>
 </project>
