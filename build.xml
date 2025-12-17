@@ -57,6 +57,12 @@
 		<get skipexisting="true" 
 			 src="https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_aarch64_linux_hotspot_25.0.1_8.tar.gz" dest="temp/jdk_aarch64_linux.tar.gz">
 		</get>
+		<get skipexisting="true" 
+			 src="https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_x64_alpine-linux_hotspot_25.0.1_8.tar.gz" dest="temp/jdk_x64_alpine.tar.gz">
+		</get>
+		<get skipexisting="true" 
+			 src="https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_aarch64_alpine-linux_hotspot_25.0.1_8.tar.gz" dest="temp/jdk_aarch64_alpine.tar.gz">
+		</get>
 	</target>
 
 	<target name="clean">
@@ -166,6 +172,18 @@
 		
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
+			<param name="system.arch" value="aarch64" />
+			<param name="java.path" value="jdk-25.0.1+8" />
+		</antcall>
+		
+		<antcall target="dist">
+			<param name="system.name" value="alpine" />
+			<param name="system.arch" value="x64" />
+			<param name="java.path" value="jdk-25.0.1+8" />
+		</antcall>
+		
+		<antcall target="dist">
+			<param name="system.name" value="alpine" />
 			<param name="system.arch" value="aarch64" />
 			<param name="java.path" value="jdk-25.0.1+8" />
 		</antcall>
