@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="distribution" default="distribution" basedir=".">
 	<property name="cms.version">8.0.0</property>
-	<property name="condation.version">2026.01-S9</property>
+	<property name="condation.version">2026.01-S10</property>
 	
 	<target name="copy-server" description="--> copy server">
 		<unzip src="../cms-server/cms-server/target/cms-server-${cms.version}.zip" dest="temp/" />
@@ -46,22 +46,22 @@
 	
 	<target name="download-jre" description="--> download jres">
 		<get skipexisting="true" 
-			 src="https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_x64_windows_hotspot_25.0.1_8.zip" dest="temp/jdk_x64_windows.zip">
+			 src="https://api.adoptium.net/v3/binary/latest/25/ga/windows/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_windows.zip">
 		</get>
 		<get skipexisting="true" 
-		 src="https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_aarch64_mac_hotspot_25.0.1_8.tar.gz" dest="temp/jdk_aarch64_mac.tar.gz">
+		 src="https://api.adoptium.net/v3/binary/latest/25/ga/mac/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_mac.tar.gz">
 		</get>
 		<get skipexisting="true" 
-			 src="https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_x64_linux_hotspot_25.0.1_8.tar.gz" dest="temp/jdk_x64_linux.tar.gz">
+			 src="https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_linux.tar.gz">
 		</get>
 		<get skipexisting="true" 
-			 src="https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_aarch64_linux_hotspot_25.0.1_8.tar.gz" dest="temp/jdk_aarch64_linux.tar.gz">
+			 src="https://api.adoptium.net/v3/binary/latest/25/ga/linux/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_linux.tar.gz">
 		</get>
 		<get skipexisting="true" 
-			 src="https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_x64_alpine-linux_hotspot_25.0.1_8.tar.gz" dest="temp/jdk_x64_alpine.tar.gz">
+			 src="https://api.adoptium.net/v3/binary/latest/25/ga/alpine-linux/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_alpine.tar.gz">
 		</get>
 		<get skipexisting="true" 
-			 src="https://github.com/adoptium/temurin25-binaries/releases/download/jdk-25.0.1%2B8/OpenJDK25U-jdk_aarch64_alpine-linux_hotspot_25.0.1_8.tar.gz" dest="temp/jdk_aarch64_alpine.tar.gz">
+			 src="https://api.adoptium.net/v3/binary/latest/25/ga/alpine-linux/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_alpine.tar.gz">
 		</get>
 	</target>
 

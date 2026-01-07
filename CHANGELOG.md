@@ -6,7 +6,7 @@ see wiki for more information: [wiki](https://github.com/thmarx/cms/wiki)
 
 # changelog
 
-## 2025.9
+## 2026.1
 
 **ATTENTION:** We switched version numbering for the distribution from semantic version numbers to date based version numbers.
 
