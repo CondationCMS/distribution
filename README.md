@@ -17,6 +17,8 @@ After all modules are installed, or if you don't use the demo set, start the ser
 server.sh server start
 ```
 
+Navigate with your browser to http://localhost:2020
+
 ## Documentation
 
 Detailed information on how to use and extend CondationCMS can be found in the official [documentation](https://condation.com/documentation).
