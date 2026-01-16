@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="distribution" default="distribution" basedir=".">
 	<property name="cms.version">8.0.0</property>
-	<property name="condation.version">2026.01-S9</property>
+	<property name="condation.version">2026.01-S10</property>
 	
 	<target name="copy-server" description="--> copy server">
 		<unzip src="../cms-server/cms-server/target/cms-server-${cms.version}.zip" dest="temp/" />
