@@ -161,37 +161,37 @@
 		<antcall target="dist">
 			<param name="system.name" value="windows" />
 			<param name="system.arch" value="x64" />
-			<param name="java.path" value="jdk-25.0.1+8" />
+			<param name="java.path" value="jdk-25.0.2+10" />
 		</antcall>
 
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
 			<param name="system.arch" value="x64" />
-			<param name="java.path" value="jdk-25.0.1+8" />
+			<param name="java.path" value="jdk-25.0.2+10" />
 		</antcall>
 		
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
 			<param name="system.arch" value="aarch64" />
-			<param name="java.path" value="jdk-25.0.1+8" />
+			<param name="java.path" value="jdk-25.0.2+10" />
 		</antcall>
 		
 		<antcall target="dist">
 			<param name="system.name" value="alpine" />
 			<param name="system.arch" value="x64" />
-			<param name="java.path" value="jdk-25.0.1+8" />
+			<param name="java.path" value="jdk-25.0.2+10" />
 		</antcall>
 		
 		<antcall target="dist">
 			<param name="system.name" value="alpine" />
 			<param name="system.arch" value="aarch64" />
-			<param name="java.path" value="jdk-25.0.1+8" />
+			<param name="java.path" value="jdk-25.0.2+10" />
 		</antcall>
 		
 		<antcall target="dist">
 			<param name="system.name" value="mac" />
 			<param name="system.arch" value="aarch64" />
-			<param name="java.path" value="./jdk-25.0.1+8/Contents/Home" />
+			<param name="java.path" value="./jdk-25.0.2+10/Contents/Home" />
 		</antcall>
 	</target>
 </project>
