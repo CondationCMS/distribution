@@ -2,6 +2,7 @@
 <project name="distribution" default="distribution" basedir=".">
 	<property name="cms.version">8.0.0</property>
 	<property name="condation.version">2026.01-S12</property>
+	<property name="jdk.version">jdk-25.0.1+8</property>
 	
 	<target name="copy-server" description="--> copy server">
 		<unzip src="../cms-server/cms-server/target/cms-server-${cms.version}.zip" dest="temp/" />
@@ -46,22 +47,22 @@
 	
 	<target name="download-jre" description="--> download jres">
 		<get skipexisting="true" 
-			 src="https://api.adoptium.net/v3/binary/latest/25/ga/windows/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_windows.zip">
+			 src="https://api.adoptium.net/v3/binary/version/${jdk.version}/windows/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_windows.zip">
 		</get>
 		<get skipexisting="true" 
-		 src="https://api.adoptium.net/v3/binary/latest/25/ga/mac/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_mac.tar.gz">
+		 src="https://api.adoptium.net/v3/binary/version/${jdk.version}/mac/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_mac.tar.gz">
 		</get>
 		<get skipexisting="true" 
-			 src="https://api.adoptium.net/v3/binary/latest/25/ga/linux/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_linux.tar.gz">
+			 src="https://api.adoptium.net/v3/binary/version/${jdk.version}/linux/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_linux.tar.gz">
 		</get>
 		<get skipexisting="true" 
-			 src="https://api.adoptium.net/v3/binary/latest/25/ga/linux/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_linux.tar.gz">
+			 src="https://api.adoptium.net/v3/binary/version/${jdk.version}/linux/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_linux.tar.gz">
 		</get>
 		<get skipexisting="true" 
-			 src="https://api.adoptium.net/v3/binary/latest/25/ga/alpine-linux/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_alpine.tar.gz">
+			 src="https://api.adoptium.net/v3/binary/version/${jdk.version}/alpine-linux/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_alpine.tar.gz">
 		</get>
 		<get skipexisting="true" 
-			 src="https://api.adoptium.net/v3/binary/latest/25/ga/alpine-linux/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_alpine.tar.gz">
+			 src="https://api.adoptium.net/v3/binary/version/${jdk.version}/alpine-linux/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_alpine.tar.gz">
 		</get>
 	</target>
 
@@ -161,37 +162,37 @@
 		<antcall target="dist">
 			<param name="system.name" value="windows" />
 			<param name="system.arch" value="x64" />
-			<param name="java.path" value="jdk-25.0.2+10" />
+			<param name="java.path" value="${jdk.version}" />
 		</antcall>
 
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
 			<param name="system.arch" value="x64" />
-			<param name="java.path" value="jdk-25.0.2+10" />
+			<param name="java.path" value="${jdk.version}" />
 		</antcall>
 		
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
 			<param name="system.arch" value="aarch64" />
-			<param name="java.path" value="jdk-25.0.2+10" />
+			<param name="java.path" value="${jdk.version}" />
 		</antcall>
 		
 		<antcall target="dist">
 			<param name="system.name" value="alpine" />
 			<param name="system.arch" value="x64" />
-			<param name="java.path" value="jdk-25.0.2+10" />
+			<param name="java.path" value="${jdk.version}" />
 		</antcall>
 		
 		<antcall target="dist">
 			<param name="system.name" value="alpine" />
 			<param name="system.arch" value="aarch64" />
-			<param name="java.path" value="jdk-25.0.2+10" />
+			<param name="java.path" value="${jdk.version}" />
 		</antcall>
 		
 		<antcall target="dist">
 			<param name="system.name" value="mac" />
 			<param name="system.arch" value="aarch64" />
-			<param name="java.path" value="./jdk-25.0.2+10/Contents/Home" />
+			<param name="java.path" value="./${jdk.version}/Contents/Home" />
 		</antcall>
 	</target>
 </project>
