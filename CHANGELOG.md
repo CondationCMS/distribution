@@ -1,12 +1,12 @@
 # cms
 
 cms is a simple java based flat file content management system.
-see wiki for more information: [wiki](https://github.com/thmarx/cms/wiki)
+see wiki for more information: [condation.com](https://condation.com)
 
 
 # changelog
 
-## 2026.1
+## 2026.2
 
 **ATTENTION:** We switched version numbering for the distribution from semantic version numbers to date based version numbers.
 
@@ -64,9 +64,9 @@ public boolean handle2 (Request request, Response response, Callback callback) {
 }
 ```
 
-#### ShortCodes
+#### Tags
 
-The RegisterShortCodesExtensionPoint interface now includes a new method, shortCodeDefinitions, which returns a list of objects that contain shortcode definitions provided through annotations.
+The RegisterTagsExtensionPoint interface now includes a new method, tagDefinitions, which returns a list of objects that contain tag definitions provided through annotations.
 
 ```java
 @ShortCode("printHello")

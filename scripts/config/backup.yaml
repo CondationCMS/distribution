@@ -6,7 +6,7 @@ cron: "0/30 * * * * ?"
 backups:
   # demo-minutly backup job
   - name: "demo-minutly"
-    enabled: true
+    enabled: false
     include_files:
       - "config/manager-users.realm"
     include_dirs:
