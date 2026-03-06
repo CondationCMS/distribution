@@ -6,6 +6,13 @@ see wiki for more information: [condation.com](https://condation.com)
 
 # changelog
 
+## 2026.03
+
+* **MAINTENANCE** Query orderby is case sensitive [609](https://github.com/CondationCMS/cms-server/issues/609)
+* **MAINTENANCE** Editable content for taxonomy pages [604](https://github.com/CondationCMS/cms-server/issues/604)
+* **MAINTENANCE** fix the total items and total pages [613](https://github.com/CondationCMS/cms-server/pull/613)
+* **MAINTENANCE** update global scope for macros [614](https://github.com/CondationCMS/cms-server/pull/614)
+
 ## 2026.2
 
 **ATTENTION:** We switched version numbering for the distribution from semantic version numbers to date based version numbers.
