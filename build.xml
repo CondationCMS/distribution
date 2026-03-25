@@ -123,6 +123,7 @@
 				<exclude name="server.toml"/>
 			</tarfileset>
 			<tarfileset file="dist/server.sh" mode="755" fullpath="condation-server/server.sh"/>
+			<tarfileset file="dist/server-cds.sh" mode="755" fullpath="condation-server/server-cds.sh"/>
 			<tarfileset file="dist/debug.sh" mode="755" fullpath="condation-server/debug.sh"/>
 			<tarfileset dir="dist/java/${system.name}_${system.arch}/${java.path}/" prefix="condation-server/java">
 				<exclude name="bin/java"/>
@@ -142,6 +143,7 @@
 				<exclude name="server.toml"/>
 			</zipfileset>
 			<zipfileset file="dist/server.bat" fullpath="condation-server/server.bat"/>
+			<zipfileset file="dist/server-cds.bat" fullpath="condation-server/server-cds.bat"/>
 			<zipfileset file="dist/debug.bat" fullpath="condation-server/debug.bat"/>
 			<zipfileset dir="dist/java/${system.name}_${system.arch}/${java.path}/" prefix="condation-server/java">
 				<exclude name="bin/java"/>

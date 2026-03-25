@@ -12,6 +12,8 @@ see wiki for more information: [condation.com](https://condation.com)
 * **MAINTENANCE** Editable content for taxonomy pages [604](https://github.com/CondationCMS/cms-server/issues/604)
 * **MAINTENANCE** fix the total items and total pages [613](https://github.com/CondationCMS/cms-server/pull/613)
 * **MAINTENANCE** update global scope for macros [614](https://github.com/CondationCMS/cms-server/pull/614)
+* **MAINTENANCE** introduce new startup script server-cds to enable cds optimization
+* **FEATURE** new template function to encode uri parameters [619](https://github.com/CondationCMS/cms-server/pull/619)
 
 ## 2026.2
 
