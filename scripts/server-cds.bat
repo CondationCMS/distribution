@@ -6,7 +6,7 @@ set JAR=%~dp0cms-server-@CMS_VERSION@.jar
 set ARCHIVE=%~dp0server.jsa
 
 if not defined JAVA_OPTS (
-    set JAVA_OPTS=-Xms256m -Xmx512m
+    set JAVA_OPTS=-Xms256m -Xmx512m -XX:+UseZGC -XX:+ZGenerational
 )
 
 if exist "%ARCHIVE%" (
