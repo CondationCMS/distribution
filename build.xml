@@ -25,7 +25,9 @@
 		<copy todir="dist/">
 			<fileset dir="scripts/">
 				<include name="server.sh"/>
+				<include name="server-cds.sh"/>
 				<include name="server.bat"/>
+				<include name="server-cds.bat"/>				
 				<include name="debug.sh"/>
 				<include name="debug.bat"/>
 				<include name="server.toml" />
@@ -42,6 +44,7 @@
 			</fileset>
 		</copy>
 		<fixcrlf srcdir="dist" includes="server.sh" eol="unix"/>
+		<fixcrlf srcdir="dist" includes="server-cds.sh" eol="unix"/>
 		<fixcrlf srcdir="dist" includes="debug.sh" eol="unix"/>
 	</target>
 	
