@@ -6,14 +6,15 @@ see wiki for more information: [condation.com](https://condation.com)
 
 # changelog
 
-## 2026.03
+## 2026.05
 
 * **MAINTENANCE** Query orderby is case sensitive [609](https://github.com/CondationCMS/cms-server/issues/609)
-* **MAINTENANCE** Editable content for taxonomy pages [604](https://github.com/CondationCMS/cms-server/issues/604)
-* **MAINTENANCE** fix the total items and total pages [613](https://github.com/CondationCMS/cms-server/pull/613)
 * **MAINTENANCE** update global scope for macros [614](https://github.com/CondationCMS/cms-server/pull/614)
 * **MAINTENANCE** introduce new startup script server-cds to enable cds optimization
+* **BUGFIX** fix the total items and total pages [613](https://github.com/CondationCMS/cms-server/pull/613)
+* **FEATURE** Editable content for taxonomy pages [604](https://github.com/CondationCMS/cms-server/issues/604)
 * **FEATURE** new template function to encode uri parameters [619](https://github.com/CondationCMS/cms-server/pull/619)
+* **FEATURE** update demo project to basicly show features
 
 ## 2026.2
 

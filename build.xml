@@ -10,10 +10,16 @@
 			<fileset dir="temp/cms-server-${cms.version}/lib"/>
 		</copy>
 		<copy todir="build/themes/demo">
-			<fileset dir="../demo-project/themes/demo"/>
+			<fileset dir="../cms-server/test-server/themes/demo"/>
 		</copy>
 		<copy todir="build/hosts/demo">
-			<fileset dir="../demo-project/hosts/demo"/>
+			<fileset dir="../cms-server/test-server/hosts/demo"/>
+		</copy>
+		<copy todir="build/hosts/demo_de">
+			<fileset dir="../cms-server/test-server/hosts/demo_de"/>
+		</copy>
+		<copy todir="build/modules">
+			<fileset dir="../cms-server/test-server/modules"/>
 		</copy>
 		<copy todir="build/">
 			<resources>
