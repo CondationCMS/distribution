@@ -169,13 +169,13 @@
 	<target name="distribution" depends="clean,download-jre,copy-server">
 		
 		<echo>create binary distributions</echo>
-		<!--
+		
 		<antcall target="dist">
 			<param name="system.name" value="windows" />
 			<param name="system.arch" value="x64" />
 			<param name="java.path" value="${jdk.version}" />
 		</antcall>
-
+<!--
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
 			<param name="system.arch" value="x64" />
