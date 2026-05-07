@@ -4,8 +4,9 @@ env = "dev"
 port = 2020
 ip = "127.0.0.1"
 
+# ui manager properties
 [ui]
-secret = "super-secret-token"
+secret = "${env:CMS_UI_SECRET}"	  # secret for JWT
 
 [ipc]
 port = 6868

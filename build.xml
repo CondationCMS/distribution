@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="distribution" default="distribution" basedir=".">
-	<property name="cms.version">8.0.0</property>
-	<property name="condation.version">2026.05-S1</property>
+	<property name="cms.version">8.1.0</property>
+	<property name="condation.version">2026.05</property>
 	<property name="jdk.version">jdk-25.0.3+9</property>
 	
 	<target name="copy-server" description="--> copy server">
@@ -141,6 +141,7 @@
 			<tarfileset file="README.md" prefix="condation-server"/>
 			<tarfileset file="CHANGELOG.md" prefix="condation-server"/>
 			<tarfileset file="LICENSE" prefix="condation-server"/>
+			<tarfileset file="LICENSE-EXCEPTION.md" prefix="condation-server"/>
 			<tarfileset file="dist/server.toml" prefix="condation-server"/>
 			<tarfileset dir="dist/config" prefix="condation-server/config"/>
 		</tar>
@@ -161,6 +162,7 @@
 			<zipfileset file="README.md" prefix="condation-server"/>
 			<zipfileset file="CHANGELOG.md" prefix="condation-server"/>
 			<zipfileset file="LICENSE" prefix="condation-server"/>
+			<zipfileset file="LICENSE-EXCEPTION.md" prefix="condation-server" />
 			<zipfileset file="dist/server.toml" prefix="condation-server"/>
 			<zipfileset dir="dist/config" prefix="condation-server/config"/>
 		</zip>
@@ -175,7 +177,7 @@
 			<param name="system.arch" value="x64" />
 			<param name="java.path" value="${jdk.version}" />
 		</antcall>
-<!--
+
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
 			<param name="system.arch" value="x64" />
@@ -199,7 +201,6 @@
 			<param name="system.arch" value="aarch64" />
 			<param name="java.path" value="${jdk.version}" />
 		</antcall>
-		-->
 		
 		<antcall target="dist">
 			<param name="system.name" value="mac" />
