@@ -14,7 +14,7 @@ CMS_UI_SECRET=xnK82mcK7I9s_K3j-L8vK9L2m_N3o_P4q_R5s_T6u_V7w_X8y_Z9a_B0c_D1e
 
 Add manager user
 ```
-server.sh server add-user -r=manager-users -ro=manager <usename> <password> <mail>
+server.sh server add_user -r=manager-users -ro=manager <usename> <password> <mail>
 ```
 
 The demo setup uses some modules, these modules have to been installed first:
