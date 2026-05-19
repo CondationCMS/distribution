@@ -142,6 +142,7 @@
 			<tarfileset file="CHANGELOG.md" prefix="condation-server"/>
 			<tarfileset file="LICENSE" prefix="condation-server"/>
 			<tarfileset file="LICENSE-EXCEPTION.md" prefix="condation-server"/>
+			<tarfileset file="LICENSE-EXCEPTION.md" prefix="condation-server"/>
 			<tarfileset file="dist/server.toml" prefix="condation-server"/>
 			<tarfileset dir="dist/config" prefix="condation-server/config"/>
 		</tar>
@@ -163,6 +164,7 @@
 			<zipfileset file="CHANGELOG.md" prefix="condation-server"/>
 			<zipfileset file="LICENSE" prefix="condation-server"/>
 			<zipfileset file="LICENSE-EXCEPTION.md" prefix="condation-server" />
+			<zipfileset file="LICENSE-EXCEPTION.md" prefix="condation-server" />
 			<zipfileset file="dist/server.toml" prefix="condation-server"/>
 			<zipfileset dir="dist/config" prefix="condation-server/config"/>
 		</zip>
@@ -177,6 +179,7 @@
 			<param name="system.arch" value="x64" />
 			<param name="java.path" value="${jdk.version}" />
 		</antcall>
+
 
 		<antcall target="dist">
 			<param name="system.name" value="linux" />
@@ -201,7 +204,7 @@
 			<param name="system.arch" value="aarch64" />
 			<param name="java.path" value="${jdk.version}" />
 		</antcall>
-		-->
+		
 		
 		<antcall target="dist">
 			<param name="system.name" value="mac" />
