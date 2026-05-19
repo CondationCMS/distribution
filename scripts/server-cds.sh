@@ -6,7 +6,7 @@ JAR="$DIR/cms-server-@CMS_VERSION@.jar"
 ARCHIVE="$DIR/server.jsa"
 
 if [ -z "$JAVA_OPTS" ]; then
-  JAVA_OPTS="-Xms256m -Xmx512m -XX:+UseZGC -XX:+ZGenerational"
+  JAVA_OPTS="-Xms256m -Xmx512m -XX:+UseZGC"
 fi
 
 if [ -f "$ARCHIVE" ]; then
@@ -15,4 +15,4 @@ else
   JAVA_OPTS="$JAVA_OPTS -XX:ArchiveClassesAtExit=$ARCHIVE"
 fi
 
-"$JAVA" $JAVA_OPTS -jar "$JAR" "$@"
+exec "$JAVA" $JAVA_OPTS -jar "$JAR" "$@"

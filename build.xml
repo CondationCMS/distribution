@@ -201,7 +201,7 @@
 			<param name="system.arch" value="aarch64" />
 			<param name="java.path" value="${jdk.version}" />
 		</antcall>
-		
+		-->
 		
 		<antcall target="dist">
 			<param name="system.name" value="mac" />
