@@ -6,5 +6,6 @@ set JAR=%~dp0cms-server-@CMS_VERSION@.jar
 if not defined JAVA_OPTS (
     set JAVA_OPTS=-Xms256m -Xmx512m -XX:+UseZGC
 )
+set JAVA_OPTS=%JAVA_OPTS% -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.local.only=true
 
 "%JAVA%" -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=127.0.0.1:8000 %JAVA_OPTS% -jar "%JAR%" %*
