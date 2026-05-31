@@ -67,12 +67,12 @@
 		<get skipexisting="true" 
 			 src="https://api.adoptium.net/v3/binary/version/${jdk.version}/linux/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_linux.tar.gz">
 		</get>
-		<get skipexisting="true" 
+		<!--get skipexisting="true" 
 			 src="https://api.adoptium.net/v3/binary/version/${jdk.version}/alpine-linux/x64/jdk/hotspot/normal/eclipse" dest="temp/jdk_x64_alpine.tar.gz">
 		</get>
 		<get skipexisting="true" 
 			 src="https://api.adoptium.net/v3/binary/version/${jdk.version}/alpine-linux/aarch64/jdk/hotspot/normal/eclipse" dest="temp/jdk_aarch64_alpine.tar.gz">
-		</get>
+		</get-->
 	</target>
 
 	<target name="clean">
@@ -191,7 +191,7 @@
 			<param name="java.path" value="${jdk.version}" />
 		</antcall>
 		
-		<antcall target="dist">
+		<!--antcall target="dist">
 			<param name="system.name" value="alpine" />
 			<param name="system.arch" value="x64" />
 			<param name="java.path" value="${jdk.version}" />
@@ -201,7 +201,7 @@
 			<param name="system.name" value="alpine" />
 			<param name="system.arch" value="aarch64" />
 			<param name="java.path" value="${jdk.version}" />
-		</antcall>
+		</antcall-->
 		
 		
 		<antcall target="dist">
