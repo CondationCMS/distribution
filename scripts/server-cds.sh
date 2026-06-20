@@ -8,7 +8,7 @@ ARCHIVE="$DIR/server.jsa"
 if [ -z "$JAVA_OPTS" ]; then
   JAVA_OPTS="-Xms256m -Xmx512m -XX:+UseZGC"
 fi
-JAVA_OPTS="$JAVA_OPTS --enable-native-access=ALL-UNNAMED  -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.local.only=true"
+JAVA_OPTS="$JAVA_OPTS --enable-native-access=ALL-UNNAMED  -Dcom.sun.management.jmxremote=true -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dcom.sun.management.jmxremote.local.only=true -Djdk.lang.Process.launchMechanism=FORK"
 
 if [ -f "$ARCHIVE" ]; then
   JAVA_OPTS="$JAVA_OPTS -Xshare:on -XX:SharedArchiveFile=$ARCHIVE"
