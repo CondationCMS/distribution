@@ -20,6 +20,7 @@
 				<file file="../cms-server/LICENSE.md"/>
 				<file file="../cms-server/LICENSE-EXCEPTION.md"/>
 				<file file="../cms-server/README.md"/>
+				<file file="../cms-server/security/condationcms-sbom.json"/>
 			</resources>
 		</copy>
 		<copy todir="dist/">
