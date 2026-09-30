@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project name="distribution" default="distribution" basedir=".">
-	<property name="cms.version">8.3.0</property>
-	<property name="condation.version">2026.08</property>
-	<property name="jdk.version">jdk-25.0.4+7</property>
+	<property name="cms.version">8.4.0</property>
+	<property name="condation.version">2026.10</property>
+	<property name="jdk.version">jdk-27+35</property> <!-- jdk-27+35 -->
 	
 	<target name="copy-server" description="--> copy server">
 		<unzip src="../cms-server/cms-server/target/cms-server-${cms.version}.zip" dest="temp/" />
